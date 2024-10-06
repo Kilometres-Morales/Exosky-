@@ -13,7 +13,7 @@ text_font = ("Helvetica", 16)
 italic_font = ("Helvetica", 14, "italic")
 
 
-planetaimg = ctk.CTkImage(Image.open("Logo.png"), size=(26, 26))
+#planetaimg = ctk.CTkImage(Image.open("Logo.png"), size=(26, 26))
 
 class WelcomeScreen:
     def __init__(self, parent):
@@ -62,7 +62,7 @@ class PlanetMenu:
         self.planets_f.grid_propagate(False) 
                 
         # Main menu buttons
-        self.planeta = ctk.CTkButton(self.planets_f, text="Planet A", image=planetaimg, fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pa)
+        self.planeta = ctk.CTkButton(self.planets_f, text="Planet A", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pa)
         self.planeta.grid(row=5, column=0, padx=20, pady=10)
 
         self.planetb = ctk.CTkButton(self.planets_f, text="Planet B", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pb)
@@ -137,22 +137,22 @@ class Key:
 class Planet:
     def __init__(self, parent, letter):
         self.parent = parent
-        
         if letter == 'a':
-            pass
+            self.name = "Proxima Centauri b"
         elif letter == 'b':
-            pass
+            self.name = "Wolf 1061 b"
         elif letter == 'c':
-            pass
+            self.name = "Laland 21185 - b"
         elif letter == 'd':
-            pass
+            self.name = "Teegarden's Star d"
         elif letter == 'e':
-            pass
+            self.name = "Kepler-22B"
+            
         
         self.key_f = ctk.CTkFrame(self.parent, fg_color=colour_bg_dark)
         self.key_f.place(relx=0, rely=0, relwidth=1, relheight=1)
         
-        self.key_f.grid_rowconfigure((0,1, 2), weight=1, uniform="row")
+        self.key_f.grid_rowconfigure((0,1,2), weight=1, uniform="row")
         self.key_f.grid_columnconfigure((0,1,2), weight=1, uniform="column")
 
         self.key_center_f = ctk.CTkFrame(self.key_f, fg_color=colour_bg_light)
