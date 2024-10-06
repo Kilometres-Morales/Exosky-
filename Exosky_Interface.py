@@ -62,20 +62,20 @@ class PlanetMenu:
         self.planets_f.grid_propagate(False) 
                 
         # Main menu buttons
-        self.planeta = ctk.CTkButton(self.planets_f, text="Planet A", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pa)
-        self.planeta.grid(row=5, column=0, padx=20, pady=10)
+        self.planeta = ctk.CTkButton(self.planets_f, text="Proxima Centauri b", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pa)
+        self.planeta.grid(row=5, column=0, padx=20, pady=10,  columnspan = 2, sticky="nsew")
 
-        self.planetb = ctk.CTkButton(self.planets_f, text="Planet B", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pb)
-        self.planetb.grid(row=1, column=1, padx=20, pady=10)
+        self.planetb = ctk.CTkButton(self.planets_f, text="Wolf 1061 b", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pb)
+        self.planetb.grid(row=2, column=1, padx=20, pady=10,  columnspan = 2, sticky="nsew")
         
-        self.planetc = ctk.CTkButton(self.planets_f, text="Planet C", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pc)
-        self.planetc.grid(row=0, column=5, padx=20, pady=10)
+        self.planetc = ctk.CTkButton(self.planets_f, text="Laland 21185 - b", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pc)
+        self.planetc.grid(row=0, column=5, padx=20, pady=10,  columnspan = 2, sticky="nsew")
         
-        self.planetd = ctk.CTkButton(self.planets_f, text="Planet D", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pd)
-        self.planetd.grid(row=1, column=9, padx=20, pady=10)
+        self.planetd = ctk.CTkButton(self.planets_f, text="Teegarden's Star d", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pd)
+        self.planetd.grid(row=2, column=9, padx=20, pady=10,  columnspan = 2, sticky="nsew")
         
-        self.planete = ctk.CTkButton(self.planets_f, text="Planet E", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pe)
-        self.planete.grid(row=5, column=10, padx=20, pady=10)
+        self.planete = ctk.CTkButton(self.planets_f, text="Kepler-22B", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_pe)
+        self.planete.grid(row=5, column=10, padx=20, pady=10, columnspan = 2, sticky="nsew")
 
 
     def display(self):
@@ -139,27 +139,37 @@ class Planet:
         self.parent = parent
         if letter == 'a':
             self.name = "Proxima Centauri b"
+            self.img = "Planet A.png"
         elif letter == 'b':
             self.name = "Wolf 1061 b"
+            self.img = "Planet B.png"
         elif letter == 'c':
             self.name = "Laland 21185 - b"
+            self.img = "Planet C.png"
         elif letter == 'd':
             self.name = "Teegarden's Star d"
+            self.img = "Planet D.png"
         elif letter == 'e':
             self.name = "Kepler-22B"
+            self.img = "Planet E.png"
             
         
         self.key_f = ctk.CTkFrame(self.parent, fg_color=colour_bg_dark)
         self.key_f.place(relx=0, rely=0, relwidth=1, relheight=1)
         
-        self.key_f.grid_rowconfigure((0,1,2), weight=1, uniform="row")
-        self.key_f.grid_columnconfigure((0,1,2), weight=1, uniform="column")
-
-        self.key_center_f = ctk.CTkFrame(self.key_f, fg_color=colour_bg_light)
-        self.key_center_f.grid(row=1, column=1, sticky="nsew")
+        self.key_f.grid_rowconfigure((0, 2), weight=1, uniform="row")
+        self.key_f.grid_rowconfigure((1), weight=7, uniform="row")
+        self.key_f.grid_columnconfigure((0,2), weight=1, uniform="column")
+        self.key_f.grid_rowconfigure((1), weight=7, uniform="row")
         
-        self.back_button = ctk.CTkButton(self.key_center_f, text="Back", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_menu)
-        self.back_button.grid(row=1, column=1, sticky="nsew")
+        self.image = Image.open(self.img)
+        self.image.thumbnail((7000, 7000))
+        self.logo = ImageTk.PhotoImage(self.image)
+        self.logo_label = ctk.CTkLabel(self.key_f, image=self.logo, text='')
+        self.logo_label.grid(row=1, column=1, sticky="nsew")
+        
+        self.back_button = ctk.CTkButton(self.key_f, text="Back", fg_color=colour_button_1, hover_color=colour_button_2, command=self.show_menu)
+        self.back_button.grid(row=0, column=0)
 
 
     def display(self):
